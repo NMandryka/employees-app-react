@@ -7,7 +7,8 @@ class EmployeesAddForm extends Component {
         super(props);
         this.state = {
             name: '',
-            salary: ''
+            salary: '',
+            border: ''
         }
     }
 
@@ -19,11 +20,13 @@ class EmployeesAddForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+        if(this.state.name.length < 3 && this.state.salary.length < 3) return;
         this.props.onAdd(this.state.name, this.state.salary);
         this.setState({
             name: '',
             salary: ''
         })
+        
     }
 
     render() {
@@ -45,7 +48,7 @@ class EmployeesAddForm extends Component {
                         className="form-control new-post-label"
                         placeholder="З/П в $?"
                         name="salary"
-                        value={salary} 
+                        value={salary}  
                         onChange={this.onValueChange}/>
     
                     <button type="submit"
